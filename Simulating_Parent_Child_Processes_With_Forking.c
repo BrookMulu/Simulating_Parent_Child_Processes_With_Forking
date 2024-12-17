@@ -86,22 +86,20 @@ int main(){
                         close(fd[0]);
                         write(fd[1],&count,sizeof(count));
                         close(fd[1]);
+                     }
+                    else{
+                        int childSum;
+                        close(fd[1]);
+                        read(fd[0], &childSum, sizeof(childSum));
+                        close(fd[0]);
+        
+                        int total = count + childSum;
+                        //printf("%d \n", total);
+                        wait(NULL);
+                        exit(0);
+                    }
                 }
-            else{
-                int childSum;
-                close(fd[1]);
-                read(fd[0], &childSum, sizeof(childSum));
-                close(fd[0]);
-
-                int total = count + childSum;
-                //printf("%d \n", total);
-                wait(NULL);
-                exit(0);
-            }
-                }
-            
             } 
-            
         }    
         else{
             if(id==0){
@@ -185,35 +183,12 @@ int main(){
                         close(fd[0]);
 
                         int total1 = count + childSum;
-                        //total = total1 + total2;
-                        //printf("%d \n", total);
                         wait(NULL);
                         printf("total: %d\n",total1);
                         exit(0);
-
-                     
-                   
-
                     }
                 }
         } 
         printf("calculated partial sum: %d\n",count);
-       /*if(id==0){
-            close(fd[0]);
-            write(fd[1],&count,sizeof(count));
-            //write(fd[1],&count2,sizeof(count2));
-            close(fd[1]);
-        }
-        else{
-            int childSum;
-            close(fd[1]);
-            read(fd[0], &childSum, sizeof(childSum));
-            close(fd[0]);
-
-            int total = count + childSum;
-            printf("%d \n", total);
-            wait(NULL);
-        }
-        */
     }
 }
