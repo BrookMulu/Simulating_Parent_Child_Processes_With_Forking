@@ -94,7 +94,6 @@ int main(){
                         close(fd[0]);
         
                         int total = count + childSum;
-                        //printf("%d \n", total);
                         wait(NULL);
                         exit(0);
                     }
@@ -114,7 +113,6 @@ int main(){
                 close(fd[0]);
 
                 int total = count + childSum;
-                //printf("%d \n", total);
                 wait(NULL);
                 exit(0);
             }
